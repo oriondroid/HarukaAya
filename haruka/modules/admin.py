@@ -35,7 +35,7 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
             exit(1)
 
     if not chatD.get_member(bot.id).can_promote_members:
-        update.effective_message.reply_text("I can't promote/demote people here! "
+        update.effective_message.reply_text("Unable to promote/demote "
                                             "Make sure I'm admin and can appoint new admins.")
         exit(1)
 
@@ -46,7 +46,7 @@ def promote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_member = chatD.get_member(user_id)
     if user_member.status == 'administrator' or user_member.status == 'creator':
-        message.reply_text(tld(chat.id, "How am I meant to promote someone that's already an admin?"))
+        message.reply_text(tld(chat.id, "Look carefully, he's already an admin"))
         return ""
 
     if user_id == bot.id:
@@ -90,7 +90,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
             exit(1)
 
     if not chatD.get_member(bot.id).can_promote_members:
-        update.effective_message.reply_text("I can't promote/demote people here! "
+        update.effective_message.reply_text("Unable to promote/demote"
                                             "Make sure I'm admin and can appoint new admins.")
         exit(1)
 
@@ -101,7 +101,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
 
     user_member = chatD.get_member(user_id)
     if user_member.status == 'creator':
-        message.reply_text(tld(chat.id, "This person CREATED the chat, how would I demote them?"))
+        message.reply_text(tld(chat.id, "C'mon dumbass, This person CREATED the chat, how would I demote them?"))
         return ""
 
     if not user_member.status == 'administrator':
@@ -109,7 +109,7 @@ def demote(bot: Bot, update: Update, args: List[str]) -> str:
         return ""
 
     if user_id == bot.id:
-        message.reply_text(tld(chat.id, "I can't demote myself!"))
+        message.reply_text(tld(chat.id, "Stop dreaming! I can't demote myself!"))
         return ""
 
     try:
